@@ -6,7 +6,6 @@ import $ from 'jquery';
 import 'datatables.net';
 import Cookies from 'universal-cookie';
 import Link from 'next/link';
-import { useSession } from '../context/SessionContext';
 import getSession from '@/lib/session';
 
 function Rentals() {
