@@ -111,10 +111,11 @@ function Rentals() {
                 <th className="font-bold">Space Number</th>
                 <th className="font-bold">Contract Date</th>
                 <th className="font-bold">Available</th>
+                <th className="font-bold">Pending For Approval</th>
               </tr>
             </thead>
             <tbody>
-              {propertyData.map(({ address, location, rentPerMonth, spaceNumber, contractDate, available, id }) => (
+              {propertyData.map(({ address, location, rentPerMonth, spaceNumber, contractDate, available, id, pendingForApproval }) => (
                 <tr key={id} className="bg-white border-t border-[#c0c0c0]">
                   <td className="px-4 py-2">{id}</td>
                   <td className="px-4 py-2">
@@ -127,6 +128,7 @@ function Rentals() {
                   <td className="px-4 py-2">{spaceNumber}</td>
                   <td className="px-4 py-2">{contractDate}</td>
                   <td className="px-4 py-2">{available ? 'Yes' : 'No'}</td>
+                  <td className="px-4 py-2">{pendingForApproval ? 'Yes' : 'No'}</td>
                 </tr>
               ))}
             </tbody>
