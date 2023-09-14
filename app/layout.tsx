@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import './globals.css';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import SessionProvider from './context/SessionContext';
 import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -17,7 +16,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SessionProvider>
       <html lang="en">
         <body className={inter.className}>
           <Nav /> 
@@ -25,6 +23,5 @@ export default function RootLayout({
           <Footer />
         </body>
       </html>
-    </SessionProvider>
   );
 }

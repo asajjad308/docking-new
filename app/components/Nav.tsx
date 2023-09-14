@@ -65,7 +65,7 @@ function Nav({ initialActive }: any) {
                 <ul className="hidden md:flex text-white gap-10">
                     {(session && session.email) ? (
                         <>
-                            <li className="hover:bg-black text-[#1a1a64] hover:underline hover:border-xl rounded px-4 py-2">
+                            <li className="text-[#1a1a64] cursor-default hover:underline hover:border-xl rounded px-4 py-2">
                                 {session.email}
                             </li>
                             <li className="bg-[#1a1a64] hover:bg-black text-white hover:text-white hover:underline hover:border-xl rounded px-4 py-2">

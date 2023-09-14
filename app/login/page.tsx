@@ -8,14 +8,16 @@ import Modal from '../components/Modal';
 import Cookies from 'universal-cookie';
 import { AiFillEye } from 'react-icons/ai';
 import { useSession } from '../context/SessionContext';
+import getSession from '@/lib/session';
 
 const Page = () => {
     const cookies = new Cookies();
     const navigate = useRouter();
-    const session = useSession();
+    // const session = useSession();
+    const session = getSession();
     const [alreadyLoggedIn, setAlreadyLoggedIn] = useState(false)
     useEffect(() => {
-        if (session?.session) {
+        if (session) {
             setAlreadyLoggedIn(true);
         }
     }, [])
@@ -43,7 +45,7 @@ const Page = () => {
                 const responseBody = await response.json();
                 const sessionToken: string = responseBody.content.accessToken;
                 cookies.set('jwt_authorization', sessionToken)
-                session?.setSession(sessionToken)
+                // session?.setSession(sessionToken)
                 window.location.href = '/';
                 setShowModal(true);
                 setTimeout(() => {
