@@ -10,7 +10,7 @@ function Rentals() {
                         <div className='flex justify-center items-center '>
                             <div className='border-2 w-10 border-black inline-block justify-center'></div>
                         </div>
-                        <p className='text-black mt-8 text-justify '> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p className='text-black mt-8 text-justify '> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
                         <div className='flex flex-col text-left mt-6 '>
                             <h2 className='md:text-2xl text-xl font-bold mb-2'>Our Docking Charges</h2></div>
                         <div>

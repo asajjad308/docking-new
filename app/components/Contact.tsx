@@ -16,7 +16,7 @@ function page() {
                     <div className='py-10'>
                         <h2 className='md:text-3xl text-2xl font-bold text-black mb-2'>Send us a message</h2>
                         <p className="  mb-4 mt-6 px-12">
-                            We would love to hear from you! Fill out the form below and we'll
+                            We would love to hear from you! Fill out the form below and we&apos;ll
                             get back to you as soon as possible.
                         </p>
 
@@ -61,11 +61,11 @@ function page() {
                 {/* sign up section */}
                 <div className='w-full md:w-[40%] bg-[#4343cf]  text-white rounded  md:rounded-tr-2xl md:rounded-br-2xl py-16'>
                     <p className='mb-10'>Contacts us</p>
-                    <h2 className='text-3xl font-bold mb-2  '>We are here for you</h2>
-                    <div className='border-2 w-10 inline-block  '></div>
+                    <h2 className='text-3xl font-bold mb-2 '>We are here for you</h2>
+                    <div className='border-2 w-10 inline-block'></div>
                     <p className='mb-10 mt-8'>Fill up personal information and and start journey with us!</p>
                     <div>
-                        <div className='flex flex-col items-center mb-10'><span className="flex flex-row px-2  ">
+                        <div className='flex flex-col items-center mb-10'><span className="flex flex-row px-2 ">
                             <FaPhoneAlt className='mt-2' />   <h2 className='text-xl font-semibold'>&nbsp; - Telefone:</h2></span>
                             <h3><a href="tel:090-123456">090-123456</a></h3>
                         </div>
@@ -78,9 +78,6 @@ function page() {
                             <h3>Lorem ipsum Lorem 234 Umeå</h3>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
 

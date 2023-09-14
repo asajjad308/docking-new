@@ -79,7 +79,7 @@ function Rentals() {
           <div className="relative  z-10 flex flex-col items-center justify-center">
             <h1 className="text-4xl font-bold mb-4">Docks Rentals Page</h1>
             <p className="text-lg md:w-[50%] text-center">
-              Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+              Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
             </p>
           </div>
         </div>
