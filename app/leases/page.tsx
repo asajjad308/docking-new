@@ -1,19 +1,15 @@
 'use client'
-import { FormEvent, useState, useEffect } from 'react';
+import { FormEvent, useState } from 'react';
 import propertyData from '../../lib/data';
 import DataModal from '../components/DataModal';
-import $ from 'jquery';
-import 'datatables.net';
+import { Column } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { InputText } from 'primereact/inputtext';
+import { FilterMatchMode } from 'primereact/api';
 import getSession from '../../lib/session';
 import Cookies from 'universal-cookie';
 import Link from 'next/link';
 function Leases() {
-    useEffect(() => {
-        const dataTable = $('#myTable').DataTable();
-        return () => {
-            dataTable.destroy();
-        }
-    }, []);
     const session = getSession();
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -72,6 +68,9 @@ function Leases() {
         }, 2000)
     };
 
+    const [filter, setFilter] = useState({
+        global: {value: null, matchMode: FilterMatchMode.CONTAINS}
+    })
 
     return (<>
         <div className=" flex w-full mx-auto justify-center flex-col">
@@ -99,39 +98,44 @@ function Leases() {
             ) : null
             }
             <div className='flex flex-col justify-center mb-[8%] mt-[2%] px-2 md:px-10 overflow-x-auto' style={{ maxWidth: '100vw' }}>
-                <table id='myTable'>
-                    <thead>
-                        <tr className="bg-[#ebe5e5]">
-                            <th className="font-bold p-4">ID</th>
-                            <th className="font-bold">Address</th>
-                            <th className="font-bold">Location</th>
-                            <th className="font-bold">Rent/Month</th>
-                            <th className="font-bold">Space Number</th>
-                            <th className="font-bold">Contract Date</th>
-                            <th className="font-bold">Available</th>
-                            <th className="font-bold">Pending For Approval</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {propertyData.map(({ address, location, rentPerMonth, spaceNumber, contractDate, available, id, pendingForApproval }) => (
-                            <tr key={id} className="bg-white border-t border-[#c0c0c0]">
-                                <td className="px-4 py-2">{id}</td>
-                                <td className="px-4 py-2">
-                                    <Link href={`/property/${id}`} className="text-[#5d5df4] hover:underline" >
-                                        {address}
-                                    </Link>
-                                </td>
-                                <td className="px-4 py-2">{location}</td>
-                                <td className="px-4 py-2">{rentPerMonth}</td>
-                                <td className="px-4 py-2">{spaceNumber}</td>
-                                <td className="px-4 py-2">{contractDate}</td>
-                                <td className="px-4 py-2">{available ? 'Yes' : 'No'}</td>
-                                <td className="px-4 py-2">{pendingForApproval ? 'Yes' : 'No'}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+          <div className='flex justify-start'>
+            <InputText
+            onInput={(e: any) => setFilter({
+              ...filter,
+              global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
+            })}
+            placeholder='Search..'
+            />
+          </div>
+          <DataTable id='myTable' value={propertyData} filters={filter}>
+            <Column field='id' header="ID" sortable />
+            <Column field='address' header="Address" sortable />
+            <Column field='location' header="Location" sortable />
+            <Column field='rentPerMonth' header="Rent/Month" sortable />
+            <Column field='spaceNumber' header="Space Number" sortable />
+            <Column field='contractDate' header="Contract Date" sortable />
+            <Column field='available' header="Available" sortable />
+            <Column field='pendingForApproval' header="Pending for Approval" sortable />
+            <tbody>
+              {propertyData.map(({ address, location, rentPerMonth, spaceNumber, contractDate, available, id, pendingForApproval }) => (
+                <tr key={id} className="bg-white border-t border-[#c0c0c0]">
+                  <td className="px-4 py-2">{id}</td>
+                  <td className="px-4 py-2">
+                    <Link href={`/property/${id}`} className="text-[#5d5df4] hover:underline" >
+                      {address}
+                    </Link>
+                  </td>
+                  <td className="px-4 py-2">{location}</td>
+                  <td className="px-4 py-2">{rentPerMonth}</td>
+                  <td className="px-4 py-2">{spaceNumber}</td>
+                  <td className="px-4 py-2">{contractDate}</td>
+                  <td className="px-4 py-2">{available ? 'Yes' : 'No'}</td>
+                  <td className="px-4 py-2">{pendingForApproval ? 'Yes' : 'No'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </DataTable>
+        </div>
         </div>
     </>)
 };

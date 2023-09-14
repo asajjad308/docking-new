@@ -1,20 +1,19 @@
 'use client'
-import { FormEvent, useState, useEffect } from 'react';
+import { FormEvent, useState } from 'react';
 import propertyData from '../../lib/data';
 import DataModal from '../components/DataModal';
-import $ from 'jquery';
-import 'datatables.net';
 import Cookies from 'universal-cookie';
 import Link from 'next/link';
 import getSession from '@/lib/session';
+import { DataTable } from "primereact/datatable";
+import { Column } from 'primereact/column';
+import { FilterMatchMode } from "primereact/api"
+import { InputText } from "primereact/inputtext"
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
 
 function Rentals() {
-  useEffect(() => {
-    const dataTable = $('#myTable').DataTable();
-    return () => {
-      dataTable.destroy();
-    }
-  }, []);
+
   const session = getSession();
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -42,12 +41,12 @@ function Rentals() {
     try {
       const response = await fetch('https://localhost:7064/api/Products', {
         method: 'POST',
-        credentials:'include',
+        credentials: 'include',
         headers: {
           'Authorization': `Bearer ${jwtAuthorization}`,
           'Content-Type': 'application/json'
-      },
-        body: JSON.stringify({ id: 0, address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate,category:'Rentals' })
+        },
+        body: JSON.stringify({ id: 0, address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate, category: 'Rentals' })
       });
 
       if (response.ok) {
@@ -65,11 +64,13 @@ function Rentals() {
     }
     setProperty(initialPropertyState);
     setTimeout(() => {
-      setResponse({message: '', ok: false})
+      setResponse({ message: '', ok: false })
     }, 2000)
   };
 
-
+  const [filter, setFilter] = useState({
+    global: { value: null, matchMode: FilterMatchMode.CONTAINS }
+  })
   return (
     <>
       <div className=" flex w-full mx-auto justify-center flex-col">
@@ -89,10 +90,10 @@ function Rentals() {
           </div>
           <div className='md:w-1/2 flex justify-end items-end'>
             {((session && session.email) == 'zia@gmail.com') && (
-            <button className="bg-[#1a1a64] active:bg-[#1a1a1a] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
-            style={{color: "white"}} 
-            type="button" onClick={() => setShowModal(true)} >Add New Rental</button>
-              )}
+              <button className="bg-[#1a1a64] active:bg-[#1a1a1a] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                style={{ color: "white" }}
+                type="button" onClick={() => setShowModal(true)} >Add New Rental</button>
+            )}
           </div>
         </div>
         {showModal ? (
@@ -100,19 +101,24 @@ function Rentals() {
         ) : null
         }
         <div className='flex flex-col justify-center mb-[8%] mt-[2%] px-2 md:px-10 overflow-x-auto' style={{ maxWidth: '100vw' }}>
-          <table id='myTable'>
-            <thead>
-              <tr className="bg-[#ebe5e5]">
-                <th className="font-bold p-4">ID</th>
-                <th className="font-bold">Address</th>
-                <th className="font-bold">Location</th>
-                <th className="font-bold">Rent/Month</th>
-                <th className="font-bold">Space Number</th>
-                <th className="font-bold">Contract Date</th>
-                <th className="font-bold">Available</th>
-                <th className="font-bold">Pending For Approval</th>
-              </tr>
-            </thead>
+          <div className='flex justify-start'>
+            <InputText
+            onInput={(e: any) => setFilter({
+              ...filter,
+              global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
+            })}
+            placeholder='Search..'
+            />
+          </div>
+          <DataTable id='myTable' value={propertyData} filters={filter}>
+            <Column field='id' header="ID" sortable />
+            <Column field='address' header="Address" sortable />
+            <Column field='location' header="Location" sortable />
+            <Column field='rentPerMonth' header="Rent/Month" sortable />
+            <Column field='spaceNumber' header="Space Number" sortable />
+            <Column field='contractDate' header="Contract Date" sortable />
+            <Column field='available' header="Available" sortable />
+            <Column field='pendingForApproval' header="Pending for Approval" sortable />
             <tbody>
               {propertyData.map(({ address, location, rentPerMonth, spaceNumber, contractDate, available, id, pendingForApproval }) => (
                 <tr key={id} className="bg-white border-t border-[#c0c0c0]">
@@ -131,7 +137,7 @@ function Rentals() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </DataTable>
         </div>
       </div>
     </>)
