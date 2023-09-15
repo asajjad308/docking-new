@@ -89,7 +89,7 @@ function Nav() {
                     <li className='bg-[#1a1a64] hover:bg-black text-white hover:text-white hover:underline hover:border-xl rounded px-4 py-2'>
 
                         <Link
-                            href="/signin"
+                            href="/login"
                             id="4"
                             onClick={change}
                             className={active === 5 ? 'bg-[#1a1a64] text-white border-xl p-2 rounded' : ''}
