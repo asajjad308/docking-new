@@ -42,7 +42,7 @@ function Hero() {
                             <option value="lease" >Lease</option>
                         </select>
                     </div>
-                    <div className="flex md:w-1/3 w-full px-5 mt-4 items-center ">
+                    <div className="flex md:w-1/3 w-full px-5 sm:mt-4 md:mt-0 items-center ">
                         <button className="rounded-full border-transparent hover:border-black  py-2 px-8 bg-primary hover:bg-black hover:text-white w-full">
                             Search
                         </button>
