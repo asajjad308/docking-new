@@ -2,98 +2,105 @@
 import { FormEvent, useState } from 'react';
 import propertyData from '../../lib/data';
 import DataModal from '../components/DataModal';
-import { Column } from 'primereact/column';
-import { DataTable } from 'primereact/datatable';
-import { InputText } from 'primereact/inputtext';
-import { FilterMatchMode } from 'primereact/api';
-import getSession from '../../lib/session';
 import Cookies from 'universal-cookie';
 import Link from 'next/link';
-function Leases() {
-    const session = getSession();
-    const [showModal, setShowModal] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [response, setResponse] = useState({ message: '', ok: false });
-    const cookies = new Cookies();
-    const initialPropertyState = {
-        address: '',
-        location: '',
-        rentPerMonth: 0,
-        spaceNumber: '',
-        status: true,
-        contractDate: '2023-08-16T14:19:03.138Z',
-        available: true,
-        addedDate: '2023-08-16T14:19:03.138Z'
-    };
-    const [property, setProperty] = useState(initialPropertyState);
+import getSession from '@/lib/session';
+import { DataTable } from "primereact/datatable";
+import { Column } from 'primereact/column';
+import { FilterMatchMode } from "primereact/api"
+import { InputText } from "primereact/inputtext"
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
 
-    const { address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate } = property;
+function Rentals() {
 
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-        setResponse({ message: "", ok: false });
-        const jwtAuthorization = cookies.get('jwt_authorization');
-        try {
-            const response = await fetch('https://dockingpanel-3e59716ec5c1.herokuapp.com/api/Products', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Authorization': `Bearer ${jwtAuthorization}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: 0, address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate, category: 'Leases' })
-            });
+  const session = getSession();
+  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState({ message: '', ok: false });
+  const cookies = new Cookies();
+  const initialPropertyState = {
+    address: '',
+    location: '',
+    rentPerMonth: 1,
+    spaceNumber: '',
+    status: true,
+    contractDate: '2023-08-16T14:19:03.138Z',
+    available: true,
+    addedDate: '2023-08-16T14:19:03.138Z'
+  };
+  const [property, setProperty] = useState(initialPropertyState);
 
-            if (response.ok) {
-                setLoading(false);
-                setResponse({ message: "Your product has been added successfully.", ok: true });
-            } else {
-                setLoading(false);
-                console.error(response);
-                setResponse({ message: "There was an error in adding your product", ok: false });
-            }
-        } catch (error) {
-            setLoading(false);
-            console.error('Error while adding product:', error);
-            setResponse({ message: "There was an error in adding your product", ok: false });
+  const { address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate } = property;
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setResponse({ message: "", ok: false });
+    const jwtAuthorization = cookies.get('jwt_authorization');
+    try {
+      const response = await fetch('https://dockingpanel-3e59716ec5c1.herokuapp.com/api/Products', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Authorization': `Bearer ${jwtAuthorization}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: 0, address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate, category: 'Rentals' })
+      });
+
+      if (response.ok) {
+        setLoading(false);
+        setResponse({ message: "Your product has been added successfully.", ok: true });
+      } else {
+        setLoading(false);
+        console.error('Failed to add product');
+        setResponse({ message: "There was an error in adding your product", ok: false });
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error('Error while adding product:', error);
+      setResponse({ message: "There was an error in adding your product", ok: false });
+    }
+    setProperty(initialPropertyState);
+    setTimeout(() => {
+      setResponse({ message: '', ok: false })
+    }, 2000)
+  };
+
+  const [filter, setFilter] = useState({
+    global: { value: null, matchMode: FilterMatchMode.CONTAINS }
+  })
+  return (
+    <>
+      <div className=" flex w-full mx-auto justify-center flex-col">
+        <div className="relative h-[400px] flex bg-cover bg-center text-white opacity-90" style={{ backgroundImage: "url('/images/docks.jpg')" }}>
+          <div className="absolute inset-0 bg-black opacity-60"></div> {/* Semi-dark overlay */}
+          <div className="relative  z-10 flex flex-col items-center justify-center">
+            <h1 className="text-4xl font-bold mb-4">Docks Leases Page</h1>
+            <p className="text-lg md:w-[50%] text-center">
+              Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row justify-center items-center px-2 md:px-10 mt-[5%]">
+          <div className='md:w-1/2 mb-4 md:mb-0'>
+            <h1 className='text-2xl font-bold'> Docking Available Leases in Umeå</h1>
+            <p className='md:w-1/2 text-lg '>Explore available rental docking spaces for your convenience. write abaout some rules and regulation or procedure</p>
+          </div>
+          <div className='md:w-1/2 flex justify-end items-end'>
+            {((session && session.email) == 'zia@gmail.com') && (
+              <button className="bg-[#1a1a64] active:bg-[#1a1a1a] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                style={{ color: "white" }}
+                type="button" onClick={() => setShowModal(true)} >Add New Rental</button>
+            )}
+          </div>
+        </div>
+        {showModal ? (
+          <DataModal setProperty={setProperty} setShowModal={setShowModal} property={property} handleSubmit={handleSubmit} loading={loading} response={response} />
+        ) : null
         }
-        setProperty(initialPropertyState);
-        setTimeout(() => {
-            setResponse({ message: '', ok: false })
-        }, 2000)
-    };
-
-    const [filter, setFilter] = useState({
-        global: {value: null, matchMode: FilterMatchMode.CONTAINS}
-    })
-
-    return (<>
-        <div className=" flex w-full mx-auto justify-center flex-col">
-            <div className="relative h-[400px] flex bg-cover bg-center text-white opacity-90" style={{ backgroundImage: "url('/images/docks.jpg')" }}>
-                <div className="absolute inset-0 bg-black opacity-60"></div> {/* Semi-dark overlay */}
-                <div className="relative  z-10 flex flex-col items-center justify-center">
-                    <h1 className="text-4xl font-bold mb-4">Docks Leasing Page</h1>
-                    <p className="text-lg md:w-[50%] text-center">
-                        Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    </p>
-                </div>
-            </div>
-            <div className="flex flex-col md:flex-row justify-center items-center px-2 md:px-10 mt-[5%]">
-                <div className='md:w-1/2 mb-4 md:mb-0'>
-                    <h1 className='text-2xl font-bold'> Docking Available Leases in Umeå</h1>
-                    <p className='md:w-1/2 text-lg '>Explore available rental docking spaces for your convenience. write abaout some rules and regulation or procedure</p>
-                </div>
-                <div className='md:w-1/2 flex justify-end items-end'>
-                    {(session && session.email == 'zia@gmail.com') &&
-                        (<button className="bg-[#1a1a64] text-white active:bg-[#1a1a1a] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" style={{ color: "white" }} onClick={() => setShowModal(true)} >Add New Leasing</button>)}
-                </div>
-            </div>
-            {showModal ? (
-                <DataModal setProperty={setProperty} setShowModal={setShowModal} property={property} handleSubmit={handleSubmit} loading={loading} response={response} />
-            ) : null
-            }
-            <div className='flex flex-col justify-center mb-[8%] mt-[2%] px-2 md:px-10 overflow-x-auto' style={{ maxWidth: '100vw' }}>
+        <div className='flex flex-col justify-center mb-[8%] mt-[2%] px-2 md:px-10 overflow-x-auto' style={{ maxWidth: '100vw' }}>
           <div className='flex justify-end mb-4'>
             <InputText
             onInput={(e: any) => setFilter({
@@ -132,7 +139,7 @@ function Leases() {
             </tbody>
           </DataTable>
         </div>
-        </div>
+      </div>
     </>)
 };
-export default Leases;
+export default Rentals;

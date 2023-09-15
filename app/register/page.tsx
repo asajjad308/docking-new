@@ -79,13 +79,13 @@ const Page = () => {
                             <div className='border-2 w-10 border-black inline-block mb-2'></div>
                             <div className='flex flex-col justify-center'>
                                 <div className='flex flex-col md:flex-row space-y-2 md:space-x-2 w-full'>
-                                    <div className='bg-[#edf2f7] w-64 p-2 flex items-center '>
+                                    <div className='bg-[#edf2f7] w-full md:w-64 p-2 flex items-center '>
                                         <FaEnvelope className='text-[#a0aec0] mr-2' />
                                         <input required type='email' name='email' placeholder='Email' onChange={e => setFormData({ 
                                             ...formData, 
                                             email:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm flex-1' />
                                     </div>
-                                    <div className='bg-[#edf2f7] w-64 mt-3 p-2 flex items-center '>
+                                    <div className='bg-[#edf2f7] w-full md:w-64 mt-3 p-2 flex items-center '>
                                         <MdLockOutline className='text-[#a0aec0] mr-2' />
                                         <input required type='password' name='password' placeholder='Password' onChange={e => setFormData({ 
                                             ...formData, 
@@ -95,23 +95,23 @@ const Page = () => {
                                 <div className='flex flex-col md:flex-row space-y-2 md:space-x-2'>
                                     <input required type='text' name='firstName' placeholder='First Name' onChange={e => setFormData({ 
                                             ...formData, 
-                                            firstName:e.target.value })} className='bg-[#edf2f7] outline-none text-sm w-64 p-2 mt-3' />
+                                            firstName:e.target.value })} className='bg-[#edf2f7] outline-none text-sm w-full md:w-64 p-2 mt-3' />
                                     <input required type='text' name='lastName' placeholder='Last Name' onChange={e => setFormData({ 
                                             ...formData, 
-                                            lastName:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
+                                            lastName:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-full md:w-64 p-2 mt-3' />
                                 </div>
                                 <div className='flex flex-col md:flex-row space-y-2 md:space-x-2'>
                                     <input required type='text' name='gender' placeholder='Gender' onChange={e => setFormData({ 
                                             ...formData, 
-                                            gender:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
+                                            gender:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-full md:w-64 p-2 mt-3' />
                                     <input required type='text' name='address' placeholder='Address' onChange={e => setFormData({ 
                                             ...formData, 
-                                            address:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
+                                            address:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-full md:w-64 p-2 mt-3' />
                                 </div>
                                 <div className='flex flex-col md:flex-row space-y-2 md:space-x-2'>
                                     <input type='text' name='userAvatar' placeholder='User Avatar' onChange={e => setFormData({ 
                                             ...formData, 
-                                            userAvatar:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
+                                            userAvatar:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-full md:w-64 p-2 mt-3' />
                                 </div>
                                 <div className='flex justify-center'>
                                     <button className='mt-5 border-2 border-black text-black rounded-full px-12 py-2 inline-block font-semi-bold hover:bg-black hover:text-white' type="submit">
