@@ -98,7 +98,7 @@ function Leases() {
             ) : null
             }
             <div className='flex flex-col justify-center mb-[8%] mt-[2%] px-2 md:px-10 overflow-x-auto' style={{ maxWidth: '100vw' }}>
-          <div className='flex justify-start'>
+          <div className='flex justify-end mb-4'>
             <InputText
             onInput={(e: any) => setFilter({
               ...filter,

@@ -125,7 +125,7 @@ function ResponsiveMenu({ active, change, toggle, session, handleLogout }: { act
                         id={String(index)}
                         onClick={change}
                         style={
-                            active === index ? { color: "blue", fontWeight: "bold" } : {}
+                            active === index ? { color: "rgb(255, 230, 200)", fontWeight: "bold" } : {}
                         }>
                         {menuItem.text}
                     </Link>

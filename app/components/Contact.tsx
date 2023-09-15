@@ -38,7 +38,7 @@ function page() {
                                 ></textarea>
                             </div>
 
-                            <a href='#' className='border-2 mt-8 border-black hover:border-primary text-black rounded-full px-12 py-2 inline-block font-semi-bold hover:bg-[#1a1a64] hover:text-white '>Sign In</a>
+                            <a href='#' className='border-2 mt-8 border-black hover:border-primary text-black rounded-full px-12 py-2 inline-block font-semi-bold hover:bg-[#1a1a64] hover:text-white '>Send Message</a>
 
 
                         </div>
