@@ -2,11 +2,10 @@ function Rentals() {
     return (
         <main className='flex flex-col items-center bg-[#faf7f2]   justify-center w-[100%] flex-1     min-h-screen py-2' >
             {/* wraper div */}
-            <div className='flex flex-col md:flex-row  w-[100%] p-8  px-28 py-20'  >
-                <div className='w-full md:w-[50%]  py-8'>
-                    <div className=' pr-16'>
-                        <h2 className='md:text-3xl text-2xl font-bold text-black  '>Providing Large Docks Rental For A Perfect</h2>
-
+            <div className='flex flex-col md:flex-row  w-[100%] p-8 md:px-28 py-20'>
+                <div className='w-full md:w-[50%] py-4 md:py-8'>
+                    <div className='md:pr-16'>
+                        <h2 className='md:text-3xl text-2xl font-bold text-black'>Providing Large Docks Rental For A Perfect</h2>
                         <div className='flex justify-center items-center '>
                             <div className='border-2 w-10 border-black inline-block justify-center'></div>
                         </div>

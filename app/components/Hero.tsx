@@ -3,21 +3,13 @@ import React from 'react';
 function Hero() {
     return (
         <div className="relative  sm:h-300 md:h-600 flex justify-center    h-[600px] ">
-            <video
-                className="absolute h-full w-full object-cover "
-                autoPlay
-                loop
-                muted
-                playsInline
-            >
+            <video className="absolute h-full w-full object-cover " autoPlay loop muted playsInline>
                 <source src="./videos/video.mp4" type="video/mp4" />
                 {/* Add fallback content if the video format is not supported */}
             </video>
             <div className="absolute inset-0 bg-back opacity-40"></div>
             <div
-                className="z-10 flex flex-col items-center justify-between
-           h-full"
-            >
+                className="z-10 flex flex-col items-center justify-between h-full" >
                 <div className="text-center mt-20 mx-4">
                     <h1
                         className="heading text-xl text-black bg-[#e8e8ef] md:text-2xl lg:text-2xl 
@@ -36,34 +28,24 @@ function Hero() {
 
                 <div className="md:flex bg-[#e5e5e5] p-5 mt-8 w-[90%] md:w-[600px] rounded-full z-10 mb-20">
                     <div className="w-full md:w-1/3   px-5">
-                        {/* <label htmlFor="location" className="block font-semibold mb-2 text-white">
-              Location
-            </label> */}
                         <select
-                            id="location"
-                            className=" w-full rounded-full py-2 px-4 "
-                        >
+                            id="location" className="border-2 border-gray-300 w-full rounded-full py-2 px-4">
                             <option value="A">Location</option>
                             <option value="A">Option A</option>
                             <option value="B">Option B</option>
                         </select>
                     </div>
                     <div className="w-full md:w-1/3 px-5 mt-4 md:mt-0 ">
-                        {/* <label htmlFor="type" className="block font-semibold mb-2 text-white text-center">
-              Type
-            </label> */}
-                        <select id="type" className="w-full rounded-full py-2 px-3 ">
+                        <select id="type" className="border-2 border-gray-300 w-full rounded-full py-2 px-3 ">
                             <option value="rental">Type</option>
                             <option value="rental">Rental</option>
                             <option value="lease" >Lease</option>
                         </select>
                     </div>
-                    <div className="flex md:w-1/3 w-full px-5  items-center ">
+                    <div className="flex md:w-1/3 w-full px-5 mt-4 items-center ">
                         <button className="rounded-full border-transparent hover:border-black  py-2 px-8 bg-primary hover:bg-black hover:text-white w-full">
                             Search
                         </button>
-
-
                     </div>
                 </div>
             </div>
