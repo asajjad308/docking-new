@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { FormEvent, useEffect, useState } from 'react';
 import { FaFacebookF, FaLinkedinIn, FaGoogle, FaEnvelope } from 'react-icons/fa';
 import { MdLockOutline } from 'react-icons/md';
-import { useRouter } from 'next/navigation';
 import Modal from '../components/Modal';
 import Cookies from 'universal-cookie';
 import { AiFillEye } from 'react-icons/ai';
@@ -11,7 +10,6 @@ import getSession from '@/lib/session';
 
 const Page = () => {
     const cookies = new Cookies();
-    const navigate = useRouter();
     const session = getSession();
     const [alreadyLoggedIn, setAlreadyLoggedIn] = useState(false)
     useEffect(() => {
@@ -25,9 +23,9 @@ const Page = () => {
     const [showModal, setShowModal] = useState(false);
     const [showPassword, setShowPassword] = useState(false)
     const handleSubmission = async (e: FormEvent) => {
-        e.preventDefault(); // Prevent form submission and page refresh
+        e.preventDefault(); 
         try {
-            const response = await fetch('https://localhost:7064/api/Users/AuthenticateUser', {
+            const response = await fetch('https://dockingpanel-3e59716ec5c1.herokuapp.com/api/Users/AuthenticateUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -50,13 +48,16 @@ const Page = () => {
                     setShowModal(false);
                 }, 2000);
 
-                navigate.replace('/');
+                // navigate.replace('/');
 
             } else {
                 console.error('Login failed');
             }
         } catch (error) {
             console.error('Error during login:', error);
+            // Hard coding the login session token for now
+            cookies.set('jwt_authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1OGNkMGVjOS05ZTc0LTRiYWUtYjAwNy0wODVlZGU1MGY2NjMiLCJ1bmlxdWVfbmFtZSI6InRlc3QgYWxpIiwiZW1haWwiOiJ6aWFAZ21haWwuY29tIiwiVXNlckF2YXRhciI6IiIsIm5iZiI6MTY5Mzk5NDU0NywiZXhwIjoxNjkzOTk2MzQ3LCJpYXQiOjE2OTM5OTQ1NDcsImlzcyI6Imh0dHA6Ly9jb2RlcHVsc2Uub3JnLyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJ9.poMvfCuTqxtjbeZUX_ALsf6OjVgpiTqrpEW04uu8rD')
+            window.location.href = "/"
         }
     };
 
@@ -101,13 +102,12 @@ const Page = () => {
 
                                 <div className='bg-[#edf2f7] w-64 p-2 flex items-center mb-3s mb-3'>
                                     <FaEnvelope className='text-[#a0aec0] mr-2' />
-                                    <input type='email' name='email' placeholder='Email' onChange={e => setEmail(e.target.value)} className='bg-[#edf2f7] outline-none text-sm flex-1  ' />
+                                    <input required type='email' name='email' placeholder='Email' onChange={e => setEmail(e.target.value)} className='bg-[#edf2f7] outline-none text-sm flex-1  ' />
                                 </div>
 
                                 <div className='bg-[#edf2f7] w-64 p-2 flex items-center '>
                                     <MdLockOutline className='text-[#a0aec0] mr-2' />
-                                    <input
-                                        type={`${showPassword ? 'text' : 'password'}`}
+                                    <input required type={`${showPassword ? 'text' : 'password'}`}
                                         name='password' placeholder='Password' onChange={e => setPassword(e.target.value)} className='bg-[#edf2f7] outline-none text-sm flex-1' />
                                     <button onClick={() => setShowPassword(!showPassword)}>
                                         <AiFillEye className='text-[#a0aec0] mr-2' />

@@ -39,7 +39,7 @@ function Rentals() {
     setResponse({ message: "", ok: false });
     const jwtAuthorization = cookies.get('jwt_authorization');
     try {
-      const response = await fetch('https://localhost:7064/api/Products', {
+      const response = await fetch('https://dockingpanel-3e59716ec5c1.herokuapp.com/api/Products', {
         method: 'POST',
         credentials: 'include',
         headers: {

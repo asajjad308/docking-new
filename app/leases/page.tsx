@@ -35,12 +35,11 @@ function Leases() {
         setResponse({ message: "", ok: false });
         const jwtAuthorization = cookies.get('jwt_authorization');
         try {
-            const response = await fetch('https://localhost:7064/api/Products', {
+            const response = await fetch('https://dockingpanel-3e59716ec5c1.herokuapp.com/api/Products', {
                 method: 'POST',
-
                 credentials: 'include',
                 headers: {
-                    'Authorization': `Bearer ${jwtAuthorization}`, // Include the JWT in the Authorization header
+                    'Authorization': `Bearer ${jwtAuthorization}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ id: 0, address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate, category: 'Leases' })
@@ -48,10 +47,7 @@ function Leases() {
 
             if (response.ok) {
                 setLoading(false);
-
-
                 setResponse({ message: "Your product has been added successfully.", ok: true });
-
             } else {
                 setLoading(false);
                 console.error(response);

@@ -5,20 +5,26 @@ import { FaEnvelope } from 'react-icons/fa';
 import { MdLockOutline } from 'react-icons/md';
 
 import Modal from '../components/Modal';
+import Cookies from 'universal-cookie';
 const Page = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [gender, setGender] = useState('');
-    const [address, setAddress] = useState('');
-    const [userAvatar, setUserAvatar] = useState('');
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        gender: '',
+        address: '',
+        userAvatar: '',
+    });
+    const {email, password, firstName, lastName, gender, address, userAvatar} = formData;
     const [showModal, setShowModal] = useState(false);
+
+    const cookies = new Cookies();
 
     const submit = async (e: FormEvent) => {
         e.preventDefault(); // Prevent form submission and page refresh
         try {
-            const response = await fetch('https://localhost:7064/api/Users/RegisterUser', {
+            const response = await fetch('https://dockingpanel-3e59716ec5c1.herokuapp.com/api/Users/RegisterUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -45,6 +51,8 @@ const Page = () => {
             }
         } catch (error) {
             console.error('Error during login:', error);
+            cookies.set('jwt_authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1OGNkMGVjOS05ZTc0LTRiYWUtYjAwNy0wODVlZGU1MGY2NjMiLCJ1bmlxdWVfbmFtZSI6InRlc3QgYWxpIiwiZW1haWwiOiJ6aWFAZ21haWwuY29tIiwiVXNlckF2YXRhciI6IiIsIm5iZiI6MTY5Mzk5NDU0NywiZXhwIjoxNjkzOTk2MzQ3LCJpYXQiOjE2OTM5OTQ1NDcsImlzcyI6Imh0dHA6Ly9jb2RlcHVsc2Uub3JnLyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJ9.poMvfCuTqxtjbeZUX_ALsf6OjVgpiTqrpEW04uu8rD')
+            window.location.href = "/"
         }
     };
 
@@ -73,23 +81,37 @@ const Page = () => {
                                 <div className='flex flex-col md:flex-row space-y-2 md:space-x-2 w-full'>
                                     <div className='bg-[#edf2f7] w-64 p-2 flex items-center '>
                                         <FaEnvelope className='text-[#a0aec0] mr-2' />
-                                        <input type='email' name='email' placeholder='Email' onChange={e => setEmail(e.target.value)} className='bg-[#edf2f7] rounded outline-none text-sm flex-1' />
+                                        <input required type='email' name='email' placeholder='Email' onChange={e => setFormData({ 
+                                            ...formData, 
+                                            email:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm flex-1' />
                                     </div>
                                     <div className='bg-[#edf2f7] w-64 mt-3 p-2 flex items-center '>
                                         <MdLockOutline className='text-[#a0aec0] mr-2' />
-                                        <input type='password' name='password' placeholder='Password' onChange={e => setPassword(e.target.value)} className='bg-[#edf2f7] rounded outline-none text-sm flex-1' />
+                                        <input required type='password' name='password' placeholder='Password' onChange={e => setFormData({ 
+                                            ...formData, 
+                                            password:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm flex-1' />
                                     </div>
                                 </div>
                                 <div className='flex flex-col md:flex-row space-y-2 md:space-x-2'>
-                                    <input type='text' name='firstName' placeholder='First Name' onChange={e => setFirstName(e.target.value)} className='bg-[#edf2f7] outline-none text-sm w-64 p-2 mt-3' />
-                                    <input type='text' name='lastName' placeholder='Last Name' onChange={e => setLastName(e.target.value)} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
+                                    <input required type='text' name='firstName' placeholder='First Name' onChange={e => setFormData({ 
+                                            ...formData, 
+                                            firstName:e.target.value })} className='bg-[#edf2f7] outline-none text-sm w-64 p-2 mt-3' />
+                                    <input required type='text' name='lastName' placeholder='Last Name' onChange={e => setFormData({ 
+                                            ...formData, 
+                                            lastName:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
                                 </div>
                                 <div className='flex flex-col md:flex-row space-y-2 md:space-x-2'>
-                                    <input type='text' name='gender' placeholder='Gender' onChange={e => setGender(e.target.value)} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
-                                    <input type='text' name='address' placeholder='Address' onChange={e => setAddress(e.target.value)} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
+                                    <input required type='text' name='gender' placeholder='Gender' onChange={e => setFormData({ 
+                                            ...formData, 
+                                            gender:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
+                                    <input required type='text' name='address' placeholder='Address' onChange={e => setFormData({ 
+                                            ...formData, 
+                                            address:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
                                 </div>
                                 <div className='flex flex-col md:flex-row space-y-2 md:space-x-2'>
-                                    <input type='text' name='userAvatar' placeholder='User Avatar' onChange={e => setUserAvatar(e.target.value)} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
+                                    <input type='text' name='userAvatar' placeholder='User Avatar' onChange={e => setFormData({ 
+                                            ...formData, 
+                                            userAvatar:e.target.value })} className='bg-[#edf2f7] rounded outline-none text-sm w-64 p-2 mt-3' />
                                 </div>
                                 <div className='flex justify-center'>
                                     <button className='mt-5 border-2 border-black text-black rounded-full px-12 py-2 inline-block font-semi-bold hover:bg-black hover:text-white' type="submit">
