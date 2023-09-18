@@ -25,7 +25,7 @@ const Page = () => {
     const handleSubmission = async (e: FormEvent) => {
         e.preventDefault(); 
         try {
-            const response = await fetch('https://dockingpanel-3e59716ec5c1.herokuapp.com/api/Users/AuthenticateUser', {
+            const response = await fetch(`https://dockingapi20230918192206.azurewebsites.net/api/Users/AuthenticateUser`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

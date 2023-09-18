@@ -24,7 +24,7 @@ const Page = () => {
     const submit = async (e: FormEvent) => {
         e.preventDefault(); // Prevent form submission and page refresh
         try {
-            const response = await fetch('https://dockingpanel-3e59716ec5c1.herokuapp.com/api/Users/RegisterUser', {
+            const response = await fetch(`https://dockingapi20230918192206.azurewebsites.net/api/Users/RegisterUser`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
