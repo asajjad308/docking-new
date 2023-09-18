@@ -76,15 +76,15 @@ function Rentals() {
       <div className=" flex w-full mx-auto justify-center flex-col">
         <div className="relative h-[400px] flex bg-cover bg-center text-white opacity-90" style={{ backgroundImage: "url('/images/docks.jpg')" }}>
           <div className="absolute inset-0 bg-black opacity-60"></div> {/* Semi-dark overlay */}
-          <div className="relative  z-10 flex flex-col items-center justify-center">
-            <h1 className="text-4xl font-bold mb-4">Docks Leases Page</h1>
+          <div className="relative px-4 md:px-0 z-10 flex flex-col items-center justify-center">
+            <h1 className="text-4xl text-center font-bold mb-4">Docks Leases Page</h1>
             <p className="text-lg md:w-[50%] text-center">
               Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
             </p>
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-center items-center px-2 md:px-10 mt-[5%]">
-          <div className='md:w-1/2 mb-4 md:mb-0'>
+          <div className='md:w-1/2 mb-4 md:mb-0 m:px-0 px-4'>
             <h1 className='text-2xl font-bold'> Docking Available Leases in Umeå</h1>
             <p className='md:w-1/2 text-lg '>Explore available rental docking spaces for your convenience. write abaout some rules and regulation or procedure</p>
           </div>
@@ -101,7 +101,7 @@ function Rentals() {
         ) : null
         }
         <div className='flex flex-col justify-center mb-[8%] mt-[2%] px-2 md:px-10 overflow-x-auto' style={{ maxWidth: '100vw' }}>
-          <div className='flex justify-end mb-4'>
+          <div className='flex justify-center md:justify-end mb-4'>
             <InputText
             onInput={(e: any) => setFilter({
               ...filter,

@@ -1,8 +1,8 @@
 function Rentals() {
     return (
-        <main className='flex flex-col items-center bg-[#faf7f2]   justify-center w-[100%] flex-1     min-h-screen py-2' >
+        <div className='flex flex-col items-center bg-[#faf7f2] justify-center w-[100%] flex-1     min-h-screen py-2' >
             {/* wraper div */}
-            <div className='flex flex-col md:flex-row  w-[100%] p-8 md:px-28 py-20'>
+            <div className='flex flex-col md:flex-row  w-[100%] p-8 md:px-28 pt-10 pb-4 md:py-20'>
                 <div className='w-full md:w-[50%] py-4 md:py-8'>
                     <div className='md:pr-16'>
                         <h2 className='md:text-3xl text-2xl font-bold text-black'>Providing Large Docks Rental For A Perfect</h2>
@@ -27,7 +27,7 @@ function Rentals() {
                                     <span className="ml-12">Item 3 write some thing important</span>
                                 </li>
                             </ul>
-                            <a href='#' className='border-2 mt-6 text-white bg-[#1a1a64] rounded-full px-12 py-2 inline-block font-semi-bold hover:bg-primary hover:text-black '>Sign In</a>
+                            <a href='/login' className='border-2 mt-6 text-white hover:bg-[#303082] bg-[#1a1a64] rounded-full px-12 py-2 inline-block font-semi-bold hover:bg-primary w-full text-center'>Sign In</a>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ function Rentals() {
                     <img src="./images/docks.jpg" className="h-[100%] w-full object-cover rounded" alt="Image Description" />
                 </div>
             </div>
-        </main>
+        </div>
     )
 }
 

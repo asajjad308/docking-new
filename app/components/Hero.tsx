@@ -26,8 +26,8 @@ function Hero() {
                     </p>
                 </div>
 
-                <div className="md:flex bg-[#e5e5e5] p-5 mt-8 w-[90%] md:w-[600px] rounded-full z-10 mb-20">
-                    <div className="w-full md:w-1/3   px-5">
+                <div className="md:flex bg-[#e5e5e5]/80 p-5 mt-8 w-[90%] md:w-[600px] rounded-md md:rounded-full z-10 mb-20">
+                    <div className="w-full md:w-1/3 px-0 md:px-5">
                         <select
                             id="location" className="border-2 border-gray-300 w-full rounded-full py-2 px-4">
                             <option value="A">Location</option>
@@ -35,15 +35,15 @@ function Hero() {
                             <option value="B">Option B</option>
                         </select>
                     </div>
-                    <div className="w-full md:w-1/3 px-5 mt-4 md:mt-0 ">
+                    <div className="w-full md:w-1/3 px-0 md:px-5 my-4 md:mt-0 ">
                         <select id="type" className="border-2 border-gray-300 w-full rounded-full py-2 px-3 ">
                             <option value="rental">Type</option>
                             <option value="rental">Rental</option>
                             <option value="lease" >Lease</option>
                         </select>
                     </div>
-                    <div className="flex md:w-1/3 w-full px-5 sm:mt-4 md:mt-0 items-center ">
-                        <button className="rounded-full border-transparent hover:border-black  py-2 px-8 bg-primary hover:bg-black hover:text-white w-full">
+                    <div className="flex md:w-1/3 w-full px-0 md:px-5 sm:mt-4 md:mt-0 items-center ">
+                        <button className="transition-all duration-300 rounded-full hover:border-black  py-2 px-8 bg-primary border border-black hover:bg-black hover:text-white w-full">
                             Search
                         </button>
                     </div>
