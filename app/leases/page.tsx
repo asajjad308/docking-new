@@ -1,6 +1,5 @@
 'use client'
-import { FormEvent, useState } from 'react';
-import propertyData from '../../lib/data';
+import { FormEvent, useState, useEffect } from 'react';
 import DataModal from '../components/DataModal';
 import Cookies from 'universal-cookie';
 import Link from 'next/link';
@@ -11,6 +10,7 @@ import { FilterMatchMode } from "primereact/api"
 import { InputText } from "primereact/inputtext"
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import { getProperties } from '@/lib/getProperties';
 
 function Rentals() {
 
@@ -31,7 +31,18 @@ function Rentals() {
     addedDate: '2023-08-16T14:19:03.138Z'
   };
   const [property, setProperty] = useState(initialPropertyState);
-
+  const [propertyData, setPropertyData] = useState<property[]>()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const properties = await getProperties();
+        setPropertyData(properties);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
   const { address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate } = property;
 
   const handleSubmit = async (e: FormEvent) => {
@@ -47,7 +58,7 @@ function Rentals() {
           'Authorization': `Bearer ${jwtAuthorization}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ id: 0, address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate, category: 'Rentals' })
+        body: JSON.stringify({ id: Math.random(), address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate, category: 'Rentals' })
       });
 
       if (response.ok) {
@@ -95,10 +106,10 @@ function Rentals() {
             <p className='md:w-1/2 text-lg '>Explore available rental docking spaces for your convenience. write abaout some rules and regulation or procedure</p>
           </div>
           <div className='md:w-1/2 flex justify-end items-end'>
-            {((session && session.email) == 'zia@gmail.com') && (
+            {(session && session.email) && (
               <button className="bg-[#1a1a64] active:bg-[#1a1a1a] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 style={{ color: "white" }}
-                type="button" onClick={() => setShowModal(true)} >Add New Rental</button>
+                type="button" onClick={() => setShowModal(true)} >Add New Leasing</button>
             )}
           </div>
         </div>
