@@ -10,6 +10,7 @@ type User = {
     unique_name: string
 }
 type property = {
+    id: number
     address: string;
     location: string;
     rentPerMonth: number;

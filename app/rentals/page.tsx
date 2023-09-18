@@ -1,6 +1,6 @@
 'use client'
 import { FormEvent, useState } from 'react';
-import propertyData from '../../lib/data';
+import propertyData, { columns } from '../../lib/data';
 import DataModal from '../components/DataModal';
 import Cookies from 'universal-cookie';
 import Link from 'next/link';
@@ -20,6 +20,7 @@ function Rentals() {
   const [response, setResponse] = useState({ message: '', ok: false });
   const cookies = new Cookies();
   const initialPropertyState = {
+    id: Math.random(),
     address: '',
     location: '',
     rentPerMonth: 1,
@@ -70,7 +71,12 @@ function Rentals() {
 
   const [filter, setFilter] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS }
-  })
+  });
+  const addressTemplate = (property: property) => {
+    return (
+      <Link className='hover:underline hover:text-black' href={`/property/${property.id}`}>{property.address}</Link>
+    )
+  }
   return (
     <>
       <div className=" flex w-full mx-auto justify-center flex-col">
@@ -103,40 +109,22 @@ function Rentals() {
         <div className='flex flex-col justify-center mb-[8%] mt-[2%] px-2 md:px-10 overflow-x-auto' style={{ maxWidth: '100vw' }}>
           <div className='flex justify-center md:justify-end mb-4'>
             <InputText
-            onInput={(e: any) => setFilter({
-              ...filter,
-              global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
-            })}
-            placeholder='Search..'
+              onInput={(e: any) => setFilter({
+                ...filter,
+                global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
+              })}
+              placeholder='Search..'
             />
           </div>
-          <DataTable id='myTable' value={propertyData} filters={filter}>
+          <DataTable showGridlines stripedRows paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" rows={5} paginator id='myTable' value={propertyData} filters={filter}>
             <Column field='id' header="ID" sortable />
-            <Column field='address' header="Address" sortable />
+            <Column field='address' header="Address" body={addressTemplate} sortable />
             <Column field='location' header="Location" sortable />
             <Column field='rentPerMonth' header="Rent/Month" sortable />
             <Column field='spaceNumber' header="Space Number" sortable />
             <Column field='contractDate' header="Contract Date" sortable />
             <Column field='available' header="Available" sortable />
             <Column field='pendingForApproval' header="Pending for Approval" sortable />
-            <tbody>
-              {propertyData.map(({ address, location, rentPerMonth, spaceNumber, contractDate, available, id, pendingForApproval }) => (
-                <tr key={id} className="bg-white border-t border-[#c0c0c0]">
-                  <td className="px-4 py-2">{id}</td>
-                  <td className="px-4 py-2">
-                    <Link href={`/property/${id}`} className="text-[#5d5df4] hover:underline" >
-                      {address}
-                    </Link>
-                  </td>
-                  <td className="px-4 py-2">{location}</td>
-                  <td className="px-4 py-2">{rentPerMonth}</td>
-                  <td className="px-4 py-2">{spaceNumber}</td>
-                  <td className="px-4 py-2">{contractDate}</td>
-                  <td className="px-4 py-2">{available ? 'Yes' : 'No'}</td>
-                  <td className="px-4 py-2">{pendingForApproval ? 'Yes' : 'No'}</td>
-                </tr>
-              ))}
-            </tbody>
           </DataTable>
         </div>
       </div>
