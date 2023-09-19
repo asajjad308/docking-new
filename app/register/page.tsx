@@ -18,7 +18,7 @@ const Page = () => {
     });
     const {email, password, firstName, lastName, gender, address, userAvatar} = formData;
     const [showModal, setShowModal] = useState(false);
-
+    const [error, setError] = useState(false);
     const cookies = new Cookies();
 
     const submit = async (e: FormEvent) => {
@@ -42,6 +42,10 @@ const Page = () => {
             });
             if (response.ok) {
                 const responseBody = await response.json();
+                // console.log(responseBody)
+                if(responseBody.errorMessage) {
+                    setError(true);
+                }
                 setShowModal(true);
                 setTimeout(() => {
                     setShowModal(false);
@@ -51,8 +55,8 @@ const Page = () => {
             }
         } catch (error) {
             console.error('Error during login:', error);
-            cookies.set('jwt_authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1OGNkMGVjOS05ZTc0LTRiYWUtYjAwNy0wODVlZGU1MGY2NjMiLCJ1bmlxdWVfbmFtZSI6InRlc3QgYWxpIiwiZW1haWwiOiJ6aWFAZ21haWwuY29tIiwiVXNlckF2YXRhciI6IiIsIm5iZiI6MTY5Mzk5NDU0NywiZXhwIjoxNjkzOTk2MzQ3LCJpYXQiOjE2OTM5OTQ1NDcsImlzcyI6Imh0dHA6Ly9jb2RlcHVsc2Uub3JnLyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJ9.poMvfCuTqxtjbeZUX_ALsf6OjVgpiTqrpEW04uu8rD')
-            window.location.href = "/"
+            // cookies.set('jwt_authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1OGNkMGVjOS05ZTc0LTRiYWUtYjAwNy0wODVlZGU1MGY2NjMiLCJ1bmlxdWVfbmFtZSI6InRlc3QgYWxpIiwiZW1haWwiOiJ6aWFAZ21haWwuY29tIiwiVXNlckF2YXRhciI6IiIsIm5iZiI6MTY5Mzk5NDU0NywiZXhwIjoxNjkzOTk2MzQ3LCJpYXQiOjE2OTM5OTQ1NDcsImlzcyI6Imh0dHA6Ly9jb2RlcHVsc2Uub3JnLyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJ9.poMvfCuTqxtjbeZUX_ALsf6OjVgpiTqrpEW04uu8rD')
+            // window.location.href = "/"
         }
     };
 

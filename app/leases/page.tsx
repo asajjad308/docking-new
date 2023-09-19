@@ -10,7 +10,7 @@ import { FilterMatchMode } from "primereact/api"
 import { InputText } from "primereact/inputtext"
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
-import { getProperties } from '@/lib/getProperties';
+import { getLeasesProperties } from '@/lib/getProperties';
 
 function Rentals() {
 
@@ -35,7 +35,7 @@ function Rentals() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const properties = await getProperties();
+        const properties = await getLeasesProperties();
         setPropertyData(properties);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -58,7 +58,7 @@ function Rentals() {
           'Authorization': `Bearer ${jwtAuthorization}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ id: Math.random(), address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate, category: 'Rentals' })
+        body: JSON.stringify({ id: Math.random(), address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate, category: 'Leases' })
       });
 
       if (response.ok) {
@@ -86,6 +86,11 @@ function Rentals() {
   const addressTemplate = (property: property) => {
     return (
       <Link className='hover:underline hover:text-black' href={`/property/${property.id}`}>{property.address}</Link>
+    )
+  }
+  const availableTemplate = (property: property) => {
+    return (
+      <tr>{property.available ? "Yes" : "No"}</tr>
     )
   }
   return (
@@ -134,7 +139,7 @@ function Rentals() {
             <Column field='rentPerMonth' header="Rent/Month" sortable />
             <Column field='spaceNumber' header="Space Number" sortable />
             <Column field='contractDate' header="Contract Date" sortable />
-            <Column field='available' header="Available" sortable />
+            <Column field='available' header="Available" sortable body={availableTemplate} />
             <Column field='pendingForApproval' header="Pending for Approval" sortable />
           </DataTable>
         </div>
