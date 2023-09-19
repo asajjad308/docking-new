@@ -40,8 +40,8 @@ function Hero() {
                         <select onChange={e => setSelectedLocation(e.target.value)}
                             id="location" className="border-2 border-gray-300 w-full rounded-full py-2 px-4" name='location'>
                             <option value="" disabled>Select Location</option>
-                            {locations?.map((loc: string) => {
-                                return <option value={loc}>{loc}</option>
+                            {locations?.map((loc: string, index) => {
+                                return <option key={index} value={loc}>{loc}</option>
                             })}
                         </select>
                     </div>
