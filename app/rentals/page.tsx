@@ -10,7 +10,7 @@ import { FilterMatchMode } from "primereact/api"
 import { InputText } from "primereact/inputtext"
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
-import { getRentalProperties } from '@/lib/getProperties';
+import { getPropertyData } from '@/lib/getProperties';
 
 function Rentals() {
 
@@ -32,11 +32,11 @@ function Rentals() {
   };
   const [property, setProperty] = useState(initialPropertyState);
   const [propertyData, setPropertyData] = useState<property[]>()
-
+  const url: string = "https://dockingapi20230918192206.azurewebsites.net/api/Products";
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const properties = await getRentalProperties();
+        const properties = await getPropertyData(url, "Rentals");
         setPropertyData(properties);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -53,7 +53,7 @@ function Rentals() {
     setResponse({ message: "", ok: false });
     const jwtAuthorization = cookies.get('jwt_authorization');
     try {
-      const response = await fetch(`https://dockingapi20230918192206.azurewebsites.net/api/Products`, {
+      const response = await fetch(url, {
         method: 'POST',
         credentials: 'include',
         headers: {

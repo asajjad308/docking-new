@@ -10,7 +10,7 @@ import { FilterMatchMode } from "primereact/api"
 import { InputText } from "primereact/inputtext"
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
-import { getLeasesProperties } from '@/lib/getProperties';
+import { getPropertyData } from '@/lib/getProperties';
 
 function Rentals() {
 
@@ -35,7 +35,7 @@ function Rentals() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const properties = await getLeasesProperties();
+        const properties = await getPropertyData("https://dockingapi20230918192206.azurewebsites.net/api/Products", "Leases");
         setPropertyData(properties);
       } catch (error) {
         console.error("Error fetching data:", error);
