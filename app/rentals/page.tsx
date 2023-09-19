@@ -92,7 +92,7 @@ function Rentals() {
   });
   const addressTemplate = (property: property) => {
     return (
-      <Link className='hover:underline hover:text-black' href={`/property/${property.id}`}>{property.address}
+      <Link className='hover:underline hover:text-black' href={`${property.available ? '/property/'+ property.id : "#"} `}>{property.address}
       </Link>
     )
   }

@@ -1,8 +1,8 @@
 'use client'
-import { useState } from 'react'; 
+import { useState, useEffect } from 'react'; 
 import { FaMap, FaPrint } from "react-icons/fa";
-import propertyData from "@/lib/data";
 import Modal from '@/app/components/Modal';
+import { getSinglePropertyData, updatePropertyAvailability } from '@/lib/getProperties';
 
 type Props = {
     params: {
@@ -10,7 +10,19 @@ type Props = {
     }
 };
 function Property({ params: { id } }: Props) {
-    const [property] = propertyData.filter((prop: property) => prop.id == id);
+    const [property, setProperty] = useState<property>();
+    const url = "https://dockingapi20230918192206.azurewebsites.net/api/Products";
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const propertyData = await getSinglePropertyData(url, id);
+            setProperty(propertyData);
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          }
+        };
+        fetchData();
+      }, []);
     const [showModal, setShowModal] = useState(false)
     const [modalTitle, setModalTitle] = useState("")
     const [modalContent, setModalContent] = useState("");
@@ -21,21 +33,18 @@ function Property({ params: { id } }: Props) {
             setModalTitle("Map");
             setModalContent(`<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10011.744556412483!2d20.2429446454634!3d63.822704069256275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c5b0ded3954a5%3A0xcb348b48d3a5d64c!2sHotel%20Avenue%20%7C%20ProfilHotels!5e0!3m2!1sen!2s!4v1694689065264!5m2!1sen!2s" width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`)
         } else if (type === "apply") {
-            const prop = propertyData.find((prop: property) => prop.id == id)
-            if(prop) {
-                prop.available = false;
-            }
             setModalTitle("Successfully applied")
             setModalContent("Your application has been submitted successfully. Please wait for the admin to approve.")
-            setTimeout(() => {
-                window.location.replace("/rentals");
-            }, 2000)
+            updatePropertyAvailability(id, property);
+            // setTimeout(() => {
+            //     window.location.replace("/rentals");
+            // }, 2000)
         }
     }
     return (
         <section className="body-font" style={{ color: "rgb(75 85 99)" }}>
             <div className="container px-5 py-24 mx-auto">
-                <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">{property.location}</h1>
+                <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">{property?.location}</h1>
                 <div className="flex flex-wrap -m-4">
                     <div className="p-4 md:w-2/3 w-full">
                         <div className="h-full bg-gray-100 p-8 rounded">

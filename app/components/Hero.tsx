@@ -1,5 +1,6 @@
 'use client'
 import { getLocations } from '@/lib/getProperties';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 function Hero() {
@@ -21,7 +22,6 @@ function Hero() {
         <div className="relative  sm:h-300 md:h-600 flex justify-center    h-[600px] ">
             <video className="absolute h-full w-full object-cover " autoPlay loop muted playsInline>
                 <source src="./videos/video.mp4" type="video/mp4" />
-                {/* Add fallback content if the video format is not supported */}
             </video>
             <div className="absolute inset-0 bg-back opacity-40"></div>
             <div
@@ -39,7 +39,7 @@ function Hero() {
                     <div className="w-full md:w-1/3 px-0 md:px-5">
                         <select onChange={e => setSelectedLocation(e.target.value)}
                             id="location" className="border-2 border-gray-300 w-full rounded-full py-2 px-4" name='location'>
-                            <option value="" disabled>Select Location</option>
+                            <option value="" selected>Select Location</option>
                             {locations?.map((loc: string, index) => {
                                 return <option key={index} value={loc}>{loc}</option>
                             })}
@@ -47,15 +47,17 @@ function Hero() {
                     </div>
                     <div className="w-full md:w-1/3 px-0 md:px-5 my-4 md:my-0 md:mt-0 ">
                         <select onChange={e => setSelectedCategory(e.target.value)}
-                        id="type" className="border-2 border-gray-300 w-full rounded-full py-2 px-3" name='type'>
-                            <option value="">Type</option>
-                            <option value="rental">Rental</option>
-                            <option value="lease" >Lease</option>
+                            id="type" className="border-2 border-gray-300 w-full rounded-full py-2 px-3" name='type'>
+                            <option value="" selected>Type</option>
+                            <option value="rentals">Rental</option>
+                            <option value="leases" >Lease</option>
                         </select>
                     </div>
                     <div className="flex md:w-1/3 w-full px-0 md:px-5 sm:mt-4 md:mt-0 items-center ">
                         <button className="transition-all duration-300 rounded-full hover:border-black  py-2 px-8 bg-primary border border-black hover:bg-black hover:text-white w-full">
-                            Search
+                            <Link href={`/${selectedCategory}/${selectedLocation}`}>
+                                Search
+                            </Link>
                         </button>
                     </div>
                 </div>

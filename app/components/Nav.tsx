@@ -3,6 +3,7 @@ import Link from "next/link";
 import Popup from "./Popup";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import getSession, { destroySession } from "../../lib/session";
+import dynamic from "next/dynamic";
 
 
 function Nav() {
@@ -153,4 +154,4 @@ function ResponsiveMenu({ active, change, toggle, session, handleLogout }: { act
     );
 }
 
-export default Nav;
+export default dynamic(() => Promise.resolve(Nav), {ssr: false}) ;
