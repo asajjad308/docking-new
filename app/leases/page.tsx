@@ -42,7 +42,7 @@ function Rentals() {
       }
     };
     fetchData();
-  }, []);
+  }, [loading]);
   const { address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate } = property;
 
   const handleSubmit = async (e: FormEvent) => {
@@ -58,12 +58,15 @@ function Rentals() {
           'Authorization': `Bearer ${jwtAuthorization}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ id: Math.random(), address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate, category: 'Leases' })
+        body: JSON.stringify({ address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate, category: 'Leases' })
       });
 
       if (response.ok) {
         setLoading(false);
         setResponse({ message: "Your product has been added successfully.", ok: true });
+        setTimeout(() => {
+          setShowModal(false);
+        }, 2000)
       } else {
         setLoading(false);
         console.error('Failed to add product');

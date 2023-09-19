@@ -43,7 +43,7 @@ function Rentals() {
       }
     };
     fetchData();
-  }, []);
+  }, [loading]);
 
   const { address, location, rentPerMonth, spaceNumber, status, contractDate, available, addedDate } = property;
 
@@ -66,6 +66,9 @@ function Rentals() {
       if (response.ok) {
         setLoading(false);
         setResponse({ message: "Your product has been added successfully.", ok: true });
+        setTimeout(() => {
+          setShowModal(false);
+        }, 2000)
       } else {
         setLoading(false);
         console.error('Failed to add product');
