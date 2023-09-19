@@ -10,7 +10,7 @@ type Props = {
     }
 };
 function Property({ params: { id } }: Props) {
-    const [property] = propertyData.filter(prop => prop.id == id);
+    const [property] = propertyData.filter((prop: property) => prop.id == id);
     const [showModal, setShowModal] = useState(false)
     const [modalTitle, setModalTitle] = useState("")
     const [modalContent, setModalContent] = useState("");
@@ -21,7 +21,7 @@ function Property({ params: { id } }: Props) {
             setModalTitle("Map");
             setModalContent(`<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10011.744556412483!2d20.2429446454634!3d63.822704069256275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c5b0ded3954a5%3A0xcb348b48d3a5d64c!2sHotel%20Avenue%20%7C%20ProfilHotels!5e0!3m2!1sen!2s!4v1694689065264!5m2!1sen!2s" width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`)
         } else if (type === "apply") {
-            const prop = propertyData.find(prop => prop.id == id)
+            const prop = propertyData.find((prop: property) => prop.id == id)
             if(prop) {
                 prop.available = false;
             }
