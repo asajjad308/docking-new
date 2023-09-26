@@ -1,0 +1,47 @@
+{
+  "Index": {
+    "title": "Upptäck Umeå Marina: Din inkörsport till äventyr!",
+    "subtitle": "Sätt segel för oförglömliga upplevelser hyr eller leasar din perfekta båt idag!",
+    "locationFormDefaultOption": "Välj plats",
+    "typeFormDefaultOption": "Välj typ",
+    "rental": "Uthyrning",
+    "lease": "Hyra"
+  },
+  "LocaleSwitcher": {
+    "label": "Ändra språk",
+    "locale": "{locale, select, se {Swedish} en {English} other {Unknown}}"
+  },
+  "Rentals": {
+    "title": "Docks uthyrningssida",
+    "subtitle": "Tillhandahåller dockningsleasing och uthyrningstjänster i Umeå. Lorem ipsum är helt enkelt dummy text från tryckeri- och sättningsindustrin. Lorem Ipsum har varit branschens vanliga dummytext ända sedan 1500-talet, då en okänd skrivare tog ett pentry av typ och förvrängde det för att göra en typprovbok.",
+    "para1": "Dockning Tillgängliga hyresavtal i Umeå",
+    "para1Subtitle": "Utforska tillgängliga hyresdockningsutrymmen för din bekvämlighet. skriva om några regler och förordningar eller förfaranden"
+  },
+  "Leases": {
+    "title": "Dock Leaser sida",
+    "subtitle": "Tillhandahåller dockningsleasing och uthyrningstjänster i Umeå. Lorem ipsum är helt enkelt dummy text från tryckeri- och sättningsindustrin. Lorem Ipsum har varit branschens vanliga dummytext ända sedan 1500-talet, då en okänd skrivare tog ett pentry av typ och förvrängde det för att göra en typprovbok.",
+    "para1": "Dockning Tillgängliga hyresavtal i Umeå",
+    "para1Subtitle": "Utforska tillgängliga hyresdockningsutrymmen för din bekvämlighet. skriva om några regler och förordningar eller förfaranden"
+  },
+  "About": {
+    "title": "Om oss",
+    "subtitle": "Tillhandahåller dockningsleasing och uthyrningstjänster i Umeå. Lorem ipsum är helt enkelt dummy text från tryckeri- och sättningsindustrin. Lorem Ipsum har varit branschens vanliga dummytext ända sedan 1500-talet, då en okänd skrivare tog ett pentry av typ och förvrängde det för att göra en typprovbok.",
+    "para1Title": "Vår berättelse",
+    "para1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec justo pulvinar, volutpat nisl sed, volutpat nisl sed. Tillhandahåller Dockningsleasing Tillhandahåller Dockningsleasing och uthyrningstjänster i Umeå. Lorem ipsum är helt enkelt dummy text från tryckeri- och sättningsindustrin. Lorem Ipsum har varit branschens standarddocka text ända sedan 1500-talet, då en okänd tryckare tog ett pentry av typ och förvrängde det för att göra en typprovbok. Tillhandahåller dockningsleasing och uthyrningstjänster i Umeå. Lorem ipsum är helt enkelt dummy text från tryckeri- och sättningsindustrin. Lorem Ipsum har varit branschens standarddocka text ända sedan 1500-talet, då en okänd tryckare tog ett pentry av typ och förvrängde det för att göra en typprovbok. Tillhandahåller dockningsleasing och uthyrningstjänster i Umeå. Lorem ipsum är helt enkelt dummy text från tryckeri- och sättningsindustrin. Lorem Ipsum har varit branschens vanliga dummytext ända sedan 1500-talet, då en okänd skrivare tog ett pentry av typ och förvrängde det för att göra en typprovbok."
+  },
+  "Contact": {
+    "title": "Skicka oss ett meddelande",
+    "subtitle": "Vi vill gärna höra från dig! Fyll i formuläret nedan så återkommer vi till dig så snart som möjligt",
+    "formLabel1": "Namn",
+    "formLabel2": "E-post",
+    "formLabel3": "Ämne",
+    "formLabel4": "Skriv ditt meddelandeMeddelande",
+    "sendButton": "Skicka meddelande",
+    "para": "Kontakta Oss",
+    "subpara": "Vi finns här för dig",
+    "registerPara": "Fyll i personlig information och börja resan med oss!",
+    "telephone": "Telephon",
+    "location": "Plats"
+
+  }
+}

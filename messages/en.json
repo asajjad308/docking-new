@@ -1,0 +1,48 @@
+{
+  "Index": {
+    "title": "Discover Umeå Marina: Your gateway to adventures!",
+    "subtitle": "Set sail for unforgettable experiences rent or lease your perfect boat today!",
+    "locationFormDefaultOption": "Select Location",
+    "typeFormDefaultOption": "Select Type",
+    "rental": "Rental",
+    "lease": "Lease"
+  },
+  "About": {
+    "title": "About Us",
+    "subtitle": "Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "para1Title": "Our Story",
+    "para1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec justo pulvinar, volutpat nisl sed, volutpat nisl sed.Providing Docking Leasing Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.."
+  },
+  "LocaleSwitcher" : {
+    "label": "Change Language",
+    "locale": "{locale, select, se {Swedish} en {English} other {Unknown}}"
+  },
+  "Rentals": {
+    "title" : "Docks Rentals Page",
+    "subtitle": "Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "para1": "Docking Available Leases in Umeå",
+    "para1Subtitle": "Explore available rental docking spaces for your convenience. write abaout some rules and regulation or procedure"
+  },
+  "Leases": {
+    "title" : "Docks Leases Page",
+    "subtitle": "Providing Docking Leasing and Rental Services in Umeå. Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "para1": "Docking Available Leases in Umeå",
+    "para1Subtitle": "Explore available rental docking spaces for your convenience. write abaout some rules and regulation or procedure"
+  },
+  "Contact": {
+    "title": "Send us a message",
+    "subtitle": "We would love to hear from you! Fill out the form below and we'll get back to you as soon as possible",
+    "formLabel1": "Name",
+    "formLabel2": "Email",
+    "formLabel3": "Subject",
+    "formLabel4": "Write your message",
+    "sendButton": "Send Message",
+    "para": "Contact Us",
+    "subpara": "We are here for you",
+    "registerPara": "Fill up personal information and and start journey with us!",
+    "telephone": "Telephone",
+    "location": "Location"
+
+  }
+  
+}

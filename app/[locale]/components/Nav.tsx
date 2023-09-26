@@ -1,12 +1,14 @@
+'use client'
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Popup from "./Popup";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import getSession, { destroySession } from "../../lib/session";
-import dynamic from "next/dynamic";
+import getSession, { destroySession } from "../../../lib/session";
+import LocaleSwitcher from "./LocaleSwitcher";
+// import dynamic from "next/dynamic";
 
 
-function Nav() {
+export default function Nav() {
     const [toggle, setToggle] = useState(false);
     const [active, setActive] = useState(0);
     const [showPopup, setShowPopup] = useState(false);
@@ -84,6 +86,7 @@ function Nav() {
                 </ul>
 
                 <ResponsiveMenu handleLogout={handleLogout} session={session} active={active} change={change} toggle={toggle} />
+                <LocaleSwitcher />
             </div>
             {showPopup && <Popup closePopupHandler={closePopupHandler} />}
         </div>
@@ -117,8 +120,7 @@ const menuItems = [
 
 function ResponsiveMenu({ active, change, toggle, session, handleLogout }: { active: number, change: (e: any) => void, toggle: boolean, session: any, handleLogout: () => void }) {
     return (
-        <ul
-            className={`md:hidden w-full h-screen z-20 text-white fixed top-[92px] bg-black ${toggle ? "left-[0]" : "left-[-100%]"}`}>
+        <ul className={`md:hidden w-full h-screen z-20 text-white fixed top-[92px] bg-black ${toggle ? "left-[0]" : "left-[-100%]"}`}>
             {menuItems.map((menuItem, index) => (
                 <li key={index} className="p-5">
                     <Link
@@ -154,4 +156,4 @@ function ResponsiveMenu({ active, change, toggle, session, handleLogout }: { act
     );
 }
 
-export default dynamic(() => Promise.resolve(Nav), {ssr: false}) ;
+// export default dynamic(Promise.resolve(Nav), {ssr: false});
