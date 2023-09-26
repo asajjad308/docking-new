@@ -1,8 +1,8 @@
 
 
-import Hero from './components/Hero';
-import Rentals from './components/Rentals';
-import Contact from './components/Contact';
+import Rentals from './[locale]/components/Rentals';
+import Contact from './[locale]/components/Contact';
+import Hero from './[locale]/components/Hero';
 
 
 function page() {
