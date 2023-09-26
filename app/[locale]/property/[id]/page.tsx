@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'; 
 import { FaMap, FaPrint } from "react-icons/fa";
-import Modal from '@/app/components/Modal';
+import Modal from '../../components/Modal';
 import { getSinglePropertyData, updatePropertyAvailability } from '@/lib/getProperties';
 
 type Props = {
