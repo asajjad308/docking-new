@@ -4,7 +4,7 @@ import Link from "next/link";
 import Popup from "./Popup";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import getSession, { destroySession } from "../../../lib/session";
-import LocaleSwitcher from "./LocaleSwitcher";
+import LocaleSwitcher from "./Switcher";
 // import dynamic from "next/dynamic";
 
 
