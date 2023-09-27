@@ -13,7 +13,7 @@ function Contact() {
                     <div className='py-10'>
                         <h2 className='md:text-3xl text-2xl font-bold text-black mb-2'>Send us a message</h2>
                         <p className="text-justify mb-4 mt-6">
-                            We would love to hear from you! Fill out the form below and we'll get back to you as soon as possible
+                            We would love to hear from you! Fill out the form below and we&apos;ll get back to you as soon as possible
                         </p>
                         <div className='border-2 w-10 border-black inline-block mb-8'></div>
                         <div className='flex flex-col items-center'>

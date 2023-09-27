@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 
-export async function generateMetaata () {
-    const t = await useTranslations("Index");
-    return {
-        title: t("title")
-    }
-}
+// export async function generateMetaata () {
+//     const t = await useTranslations("Index");
+//     return {
+//         title: t("title")
+//     }
+// }
 function Hero() {
     const t = useTranslations("Index") 
     const [locations, setLocations] = useState<string[]>();
