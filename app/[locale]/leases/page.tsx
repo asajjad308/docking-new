@@ -12,6 +12,8 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { getPropertyData } from '@/lib/getProperties';
 import { useTranslations } from "next-intl";
+
+
 function Leases() {
   const t = useTranslations("Leases")
   const session = getSession();

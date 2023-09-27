@@ -1,33 +1,23 @@
-import React from 'react';
+import { notFound } from 'next/navigation';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import './globals.css';
-import { Inter } from 'next/font/google';
-import { NextIntlClientProvider } from 'next-intl';
-import { notFound } from 'next/navigation';
+import { NextIntlClientProvider, useLocale, useMessages } from 'next-intl';
+import "./globals.css"
 
-const inter = Inter({ subsets: ['latin'] });
-
-export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'de' }];
-}
-
-export default async function RootLayout({ children, params: { locale } }: { children: React.ReactNode; params: any }) {
-  let messages;
-  try {
-    messages = (await import(`../../messages/${locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
-  return (
-    <html>
-      <body className={inter.className}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+type Props = { children: React.ReactNode, params: { locale: string } }
+export default function RootLayout({ children, params: { locale } }: Props) {
+ const idiom = useLocale();
+ if(locale != idiom) notFound();
+ const messages = useMessages(); 
+ return (
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <html>
+        <body>
           <Nav />
           {children}
           <Footer />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+      </NextIntlClientProvider>
   );
 }
